@@ -21,8 +21,10 @@ export default function WalletContextProvider({
 }: {
   children: React.ReactNode;
 }) {
-  // Use local validator endpoint
-  const endpoint = useMemo(() => "http://127.0.0.1:8898", []);
+  // Use environment variable for endpoint, fallback to devnet
+  const endpoint = useMemo(() => {
+    return process.env.NEXT_PUBLIC_RPC_ENDPOINT || clusterApiUrl(WalletAdapterNetwork.Devnet);
+  }, []);
 
   const wallets = useMemo(
     () => [new PhantomWalletAdapter(), new SolflareWalletAdapter()],
