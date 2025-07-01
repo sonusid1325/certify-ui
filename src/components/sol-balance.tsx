@@ -123,8 +123,9 @@ export default function SOLBalance() {
               <RefreshCw className={`h-3 w-3 ${loading ? "animate-spin" : ""}`} />
             </Button>
 
-            {/* Only show airdrop button for local development */}
-            {connection.rpcEndpoint.includes("127.0.0.1") && (
+            {/* Show airdrop button for local and devnet */}
+            {(connection.rpcEndpoint.includes("127.0.0.1") ||
+              connection.rpcEndpoint.includes("devnet.solana.com")) && (
               <Button
                 variant="outline"
                 size="sm"
@@ -143,8 +144,12 @@ export default function SOLBalance() {
         {hasNoBalance && (
           <div className="text-xs text-red-500 bg-red-50 dark:bg-red-950 p-2 rounded">
             ⚠️ No SOL balance! You need SOL to pay for transactions.
-            {connection.rpcEndpoint.includes("127.0.0.1") && (
+            {(connection.rpcEndpoint.includes("127.0.0.1") ||
+              connection.rpcEndpoint.includes("devnet.solana.com")) && (
               <> Click "Airdrop" to get free SOL for testing.</>
+            )}
+            {connection.rpcEndpoint.includes("mainnet") && (
+              <> Purchase SOL from an exchange to fund your wallet.</>
             )}
           </div>
         )}
@@ -152,8 +157,12 @@ export default function SOLBalance() {
         {isLowBalance && !hasNoBalance && (
           <div className="text-xs text-yellow-600 bg-yellow-50 dark:bg-yellow-950 p-2 rounded">
             ⚠️ Low SOL balance! You may need more SOL for transactions.
-            {connection.rpcEndpoint.includes("127.0.0.1") && (
+            {(connection.rpcEndpoint.includes("127.0.0.1") ||
+              connection.rpcEndpoint.includes("devnet.solana.com")) && (
               <> Click "Airdrop" to get more SOL for testing.</>
+            )}
+            {connection.rpcEndpoint.includes("mainnet") && (
+              <> Consider adding more SOL to your wallet.</>
             )}
           </div>
         )}

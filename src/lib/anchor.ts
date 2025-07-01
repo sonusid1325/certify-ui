@@ -4,7 +4,10 @@ import idl from "../idl/certify.json";
 import { Certificate, CertificateAccount } from "./types";
 
 export const getProgram = async (wallet: any) => {
-  const connection = new Connection("http://127.0.0.1:8898", "processed");
+  const connection = new Connection(
+    process.env.NEXT_PUBLIC_RPC_ENDPOINT || "http://127.0.0.1:8898",
+    (process.env.NEXT_PUBLIC_COMMITMENT as any) || "processed"
+  );
 
   const provider = new AnchorProvider(connection, wallet, {
     preflightCommitment: "processed",

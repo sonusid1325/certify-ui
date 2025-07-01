@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import WalletAddress from "@/components/wallet-address";
+import { getNetworkName } from "@/lib/env";
 
 export default function ConnectionStatus() {
   const { connection } = useConnection();
@@ -62,6 +63,9 @@ export default function ConnectionStatus() {
                 {connectionStatus.status === "connected" ? "Connected" :
                  connectionStatus.status === "checking" ? "Checking..." : "Disconnected"}
               </Badge>
+              <Badge variant="outline" className="text-xs">
+                {getNetworkName(connection.rpcEndpoint)}
+              </Badge>
             </div>
 
             {blockHeight && (
@@ -69,6 +73,10 @@ export default function ConnectionStatus() {
                 Block: {blockHeight.toLocaleString()}
               </div>
             )}
+          </div>
+
+          <div className="text-xs text-muted-foreground">
+            RPC: {connection.rpcEndpoint}
           </div>
 
           {connected && publicKey && (
