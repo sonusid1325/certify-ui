@@ -8,6 +8,7 @@ import StudentPage from "@/components/student-page";
 import ConnectionStatus from "@/components/connection-status";
 import SOLBalance from "@/components/sol-balance";
 import TroubleshootingHelp from "@/components/troubleshooting-help";
+import NetworkSwitcher from "@/components/network-switcher";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 export default function Home() {
@@ -27,6 +28,7 @@ export default function Home() {
             </div>
           </div>
 
+          <NetworkSwitcher />
           <ConnectionStatus />
           <SOLBalance />
           <TroubleshootingHelp />
