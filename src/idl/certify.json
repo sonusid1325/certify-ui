@@ -1,0 +1,114 @@
+{
+  "address": "8gdhx9xwLSiBmSjqnGxPAGhDoZeJu1SWX9oLDr9qvWUb",
+  "metadata": {
+    "name": "certify",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "issue_certificate",
+      "discriminator": [
+        61,
+        197,
+        55,
+        28,
+        159,
+        18,
+        132,
+        128
+      ],
+      "accounts": [
+        {
+          "name": "certificate",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  101,
+                  114,
+                  116
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "certificate_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "issuer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "student"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "certificate_id",
+          "type": "string"
+        },
+        {
+          "name": "course",
+          "type": "string"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Certificate",
+      "discriminator": [
+        202,
+        229,
+        222,
+        220,
+        116,
+        20,
+        74,
+        67
+      ]
+    }
+  ],
+  "types": [
+    {
+      "name": "Certificate",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "student",
+            "type": "pubkey"
+          },
+          {
+            "name": "issuer",
+            "type": "pubkey"
+          },
+          {
+            "name": "certificate_id",
+            "type": "string"
+          },
+          {
+            "name": "course",
+            "type": "string"
+          },
+          {
+            "name": "issued_at",
+            "type": "i64"
+          }
+        ]
+      }
+    }
+  ]
+}
